@@ -1,6 +1,8 @@
 const express = require("express");
+const connectDB = require("./cofing/db");
 
 const app = express();
+connectDB();
 
 // Build the API
 app.get("/", (req, res) => {
