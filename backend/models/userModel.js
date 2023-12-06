@@ -8,7 +8,6 @@ const userModel = mongoose.Schema(
     // confirmPassword:{type:String,required:true}
     pic: {
       type: String,
-      required: true,
       default:
         "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
     },
@@ -18,3 +17,4 @@ const userModel = mongoose.Schema(
   }
 );
 const User = mongoose.model("User", userModel);
+module.exports = User;
