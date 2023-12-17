@@ -1,5 +1,6 @@
 const express = require("express");
 const connectDB = require("./cofing/db");
+const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
 
@@ -20,5 +21,7 @@ app.get("/", (req, res) => {
 
 // API - Routing
 app.use("/api/user", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(5000, console.log("Server is listening to port 5000..."));
