@@ -1,34 +1,24 @@
-// since we are doing Chat-App we should adjust the Schema of the DataBase.
-// We will want that our chat will containe:  ChatName, isGroupChat, Users, latestMessage, Group Admin, (sender)
+// // since we are doing Chat-App we should adjust the Schema of the DataBase.
+// // We will want that our chat will containe:  ChatName, isGroupChat, Users, latestMessage, Group Admin, (sender)
 
-// We will use mongoose package to connect our DB
+// // We will use mongoose package to connect our DB
 
 const mongoose = require("mongoose");
 
-const chatSchema = mongoose.Schema(
+const chatModel = mongoose.Schema(
   {
     chatName: { type: String, trim: true },
     isGroupChat: { type: Boolean, default: false },
-    users: [
-      {
-        // In that way it will display the users on Database.
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User ",
-      },
-    ],
+    users: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     latestMessage: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Message",
     },
-    groupAdmin: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User ",
-    },
+    groupAdmin: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-const Chat = mongoos.model("Chat", chatSchema);
+const Chat = mongoose.model("Chat", chatModel);
+
 module.exports = Chat;

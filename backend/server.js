@@ -1,11 +1,12 @@
 const express = require("express");
 const connectDB = require("./cofing/db");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
+const userRoutes = require("./routes/userRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 const app = express();
 
 const dotenv = require("dotenv");
-const userRoutes = require("./routes/userRoutes");
 
 // To accept the data from HTTP request
 app.use(express.json());
@@ -20,7 +21,10 @@ app.get("/", (req, res) => {
 });
 
 // API - Routing
+// handeling all Users calls
 app.use("/api/user", userRoutes);
+// handeling all Chat calls - Remove , Add, Rename, etc..
+app.use("/api/chat", chatRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
