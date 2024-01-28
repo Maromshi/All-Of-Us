@@ -8,6 +8,8 @@ const ChatContext = createContext(); // This function returns two components: a 
 const ChatProvider = ({ children }) => {
   //  Those states will be avilable in the while app
   const [user, setUser] = useState();
+  const [selectedChat, setSelectedChat] = useState();
+  const [chats, setChats] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -19,7 +21,9 @@ const ChatProvider = ({ children }) => {
   }, [history]);
 
   return (
-    <ChatContext.Provider value={{ user, setUser }}>
+    <ChatContext.Provider
+      value={{ user, setUser, selectedChat, setSelectedChat, chats, setChats }}
+    >
       {children}
     </ChatContext.Provider>
   );
